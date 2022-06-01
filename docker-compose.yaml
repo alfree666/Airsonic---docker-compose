@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+ 
+  airsonic-advanced:
+    image: lscr.io/linuxserver/airsonic-advanced:latest
+    container_name: airsonic-advanced
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - ./app/config:/config
+      - ./app/music:/music
+      - ./app/playlists:/playlists
+      - ./app/podcasts:/podcasts
+      - ./app/media:/media #optional
+    ports:
+      - 8200:4040
+#    devices:
+#      - /dev/snd:/dev/snd #optional
+    restart: unless-stopped
+
+    
